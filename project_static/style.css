@@ -8,15 +8,16 @@ table th {
   width: auto !important;
 }
 
-  .bg-lightblue {
+.bg-lightblue {
     background-color: #ddebf0;
-  }
+}
 
-  .height-full {
+.height-full {
     /* full height - nav height (50px) - footer height (100px) */
     height: calc(100vh - 150px);
-  }
+}
 
-  footer {
+footer {
     height: 100px;
-  }
+}
+

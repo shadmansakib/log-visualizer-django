@@ -25,7 +25,12 @@
                     <input name="password" type="password" class="form-control" id="password" placeholder="Password">
                 </div>
 
-                <!-- todo: show error messages here -->
+                <!-- error messages -->
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %} alert-danger{% endif %}">{{ message|safe }}</div>
+                {% endfor %}
+                {% endif %}
 
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary w-100">Sign in</button>

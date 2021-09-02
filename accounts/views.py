@@ -1,13 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
+
+from accounts.forms import CustomPasswordChangeForm
 
 
 def login_user(request):
-    # return render(request, 'account/login_form.html')
-
     if request.user.is_authenticated:
         return redirect('accounts:profile')
 
@@ -19,14 +18,13 @@ def login_user(request):
         if not username or not password:
             print('Incorrect username or password')
             messages.error(request, 'Incorrect username or password')
-            return redirect('accounts:login')
+            return render(request, 'accounts/login_form.html')
 
         user = authenticate(request, username=username, password=password)
 
         if not user:
-            print('user not found')
             messages.error(request, 'Incorrect username or password')
-            return redirect('accounts:login')
+            return render(request, 'accounts/login_form.html')
 
         # login user
         login(request, user)
@@ -37,29 +35,22 @@ def login_user(request):
 
 @login_required(login_url='accounts:login')
 def user_profile(request):
-    return render(request, 'accounts/user_profile.html')
-
-
-def logout_user(request):
-    logout(request)
-    return redirect('accounts:login')
-
-
-@login_required(login_url='accounts:login')
-def change_password(request):
-    form = PasswordChangeForm(user=request.user, data=request.POST or None)
+    form = CustomPasswordChangeForm(user=request.user, data=request.POST or None)
 
     if request.method == 'POST':
         if not form.is_valid():
-            # todo: show proper validation error msg
-            messages.error(request, 'Invalid input')
-            return redirect('accounts:change-password')
+            return render(request, 'accounts/user_profile.html', {'form': form})
 
         # save valid password, update session, redirect to same page with msg
         form.save()
         update_session_auth_hash(request, form.user)
 
         messages.success(request, 'Password changed')
-        return redirect('accounts:change-password')
+        return redirect('accounts:profile')
 
-    return render(request, 'accounts/profile.html', {'form': form})
+    return render(request, 'accounts/user_profile.html', {'form': form})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('accounts:login')
