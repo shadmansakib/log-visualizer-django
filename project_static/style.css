@@ -1,0 +1,22 @@
+body::before {
+    display: block;
+    content: '';
+    height: 50px;
+  }
+
+table th {
+  width: auto !important;
+}
+
+  .bg-lightblue {
+    background-color: #ddebf0;
+  }
+
+  .height-full {
+    /* full height - nav height (50px) - footer height (100px) */
+    height: calc(100vh - 150px);
+  }
+
+  footer {
+    height: 100px;
+  }

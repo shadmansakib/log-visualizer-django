@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- chart area -->
+<div class="row">
+
+    <!-- line chart -->
+    <!-- <div class="col-12 col-lg-6" style="background-color: lightpink;"> -->
+    <div class="col-12 col-md-6" style="">
+
+        <div id="line-chart">
+
+        </div>
+
+
+    </div>
+
+
+    <!-- pie chart -->
+    <!-- <div class="col-12 col-lg-6" style="background-color: magenta;"> -->
+    <div class="col-12 col-md-6" style="">
+
+        <div id="pie-chart"></div>
+
+    </div>
+
+</div>
+<!-- end: chart area -->
+
+<hr>
+
+
+<!-- table area -->
+
+<div class="row my-5" style="">
+
+    <h5 class="mb-2">Latest logs</h5>
+
+    <table class="table table-striped">
+
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Category</th>
+            <th scope="col">Message</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for l in logs %}
+        <!-- table row -->
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ l.timestamp|date:"M d H:i:s" }}</td>
+            <td>{{ l.category }}</td>
+            <td>{{ l.message }}</td>
+        </tr>
+        <!-- end: table row -->
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+</div>
+
+<!-- end: table area -->
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<!-- highcharts -->
+<script language="javascript" type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+
+<!-- highcharts util functions -->
+<script language="javascript" type="text/javascript" src="{% static 'scripts.js' %}"></script>
+
+{% endblock %}
+

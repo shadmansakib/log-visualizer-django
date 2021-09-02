@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row height-full">
+
+    <div class="d-flex align-items-center justify-content-center">
+
+
+        <div class="col-md-4 rounded p-4 bg-lightblue">
+
+            <h1 class="fs-4">Login</h1>
+
+            <form method="POST" action="{% url 'visualizer:login' %}">
+                <!-- todo: add csrf token -->
+                {% csrf_token %}
+
+                <div class="mb-2">
+                    <label for="username" class="form-label">Username</label>
+                    <input name="username" type="text" class="form-control" id="username" placeholder="Username">
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+
+                <!-- todo: show error messages here -->
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                </div>
+
+            </form>
+
+        </div>
+
+
+</div>
+
+{% endblock %}
