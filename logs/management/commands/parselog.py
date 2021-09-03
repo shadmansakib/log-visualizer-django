@@ -18,7 +18,7 @@ class Command(BaseCommand):
             '-a',
             '--append',
             action='store_true',
-            help='Append in existing database',
+            help='Append to existing database',
         )
 
     def handle(self, *args, **options):

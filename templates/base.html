@@ -47,7 +47,7 @@
                 {% else %}
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Login</a>
+                    <a href="{% url 'accounts:login' %}" class="nav-link">Login</a>
                 </li>
                 {% endif %}
 
@@ -59,19 +59,13 @@
 
 <!-- main container -->
 <div class="container">
-{% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 </div>
 <!-- end: main container -->
 
 <!-- footer -->
 <footer class="d-flex justify-content-center align-items-center py-5 border-top">
-
-    <div class="d-flex align-items-center text-center">
-        <span class="text-muted me-2">Log Visualizer</span>
-        <!-- <span class="text-muted"><a href="#" target="_blank">Source code</a></span> -->
-        <span class=""><a href="#">Source code</a></span>
-    </div>
-
+    <span class="text-muted me-2">Log Visualizer</span>
 </footer>
 <!-- end: footer -->
 
