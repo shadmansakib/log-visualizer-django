@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+{{request.user}} - Profile
+{% endblock %}
+
 {% block content %}
 
 <div class="row height-full">
@@ -8,13 +12,9 @@
 
 
         <!-- user info section -->
-        <!-- <div class="" style="flex:1; background-color: #b6c4e9;"> -->
         <div class="" style="flex:1;">
 
             <h1>Hello, {{request.user}}!</h1>
-
-            <!-- todo: show password change error messages here? -->
-
 
             {% if form.errors %}
             <div class="w-75 ms-md-5 mt-5 alert alert-danger">
@@ -50,37 +50,28 @@
         <!-- change password section -->
         <div class="" style="flex:1;">
 
-            <!-- <div class="p-4" style="background-color: #929292;"> -->
             <div class="p-4">
-
 
                 <h3>Change your password</h3>
 
                 <form method="POST" action="{% url 'accounts:profile' %}">
 
-                    <!-- todo: add csrf token -->
                     {% csrf_token %}
-
 
                     <div class="mb-2">
                         <label for="old_password" class="form-label">Old Password</label>
-                        <!--                        <input name="old_password" type="password" class="form-control" id="old_password" placeholder="Old Password">-->
                         {{ form.old_password }}
                     </div>
 
                     <div class="mb-2">
                         <label for="new_password1" class="form-label">New Password</label>
-                        <!--                        <input name="new_password1" type="password" class="form-control" id="new_password1" placeholder="New Password">-->
                         {{ form.new_password1 }}
                     </div>
 
                     <div class="mb-2">
                         <label for="new_password2" class="form-label">Password Again</label>
-                        <!--                        <input name="new_password2" type="password" class="form-control" id="new_password2" placeholder="Password Again">-->
                         {{ form.new_password2 }}
                     </div>
-
-                    <!-- todo: show error messages here -->
 
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary w-100">Change Password</button>

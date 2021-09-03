@@ -21,7 +21,6 @@ class Category(models.Model):
 class Log(models.Model):
     timestamp = models.DateTimeField()
 
-    # todo: replace with TextField if necessary
     message = models.CharField(max_length=1000)
 
     category = models.ForeignKey(

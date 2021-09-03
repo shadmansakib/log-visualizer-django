@@ -12,7 +12,6 @@
             <h1 class="fs-4">Login</h1>
 
             <form method="POST" action="{% url 'accounts:login' %}">
-                <!-- todo: add csrf token -->
                 {% csrf_token %}
 
                 <div class="mb-2">

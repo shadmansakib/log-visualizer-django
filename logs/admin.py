@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from logs.models import Log, Category
+
+admin.site.register(Category)
+admin.site.register(Log)

@@ -1,8 +1,5 @@
 from django.contrib.auth.forms import PasswordChangeForm
 
-# class CustomPasswordChangeForm(PasswordChangeForm):
-from django.views.generic.edit import FormMixin
-
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
